@@ -450,3 +450,356 @@ function maps(x) {
   let newarr = x.map((el) => el * 2);
   return newarr;
 }
+
+/* reversed strings */
+function solution(str) {
+  return str.split('').reverse().join('');
+}
+
+/* String ends with */
+function solution(str, ending) {
+  // TODO: complete
+  return str.endsWith(ending);
+}
+
+/* Do i get a bonus */
+function bonusTime(salary, bonus) {
+  // your code here
+  let total = 0;
+  bonus ? (total = salary * 10) : (total = salary);
+  return '\u00A3' + total;
+}
+
+/* Abbereviate a two worn name */
+function abbrevName(name) {
+  // code away
+  let arr = name.split(' ');
+  let result = '';
+  for (let i = 0; i < arr.length; i++) {
+    result += arr[i].charAt(0) + '.';
+  }
+  return result.slice(0, -1);
+}
+
+/* Dna to Rna conversion */
+function DNAtoRNA(dna) {
+  // create a function which returns an RNA sequence from the given DNA sequence
+  return dna.replace(/T/g, 'U');
+}
+
+/* Counting sheeps */
+function countSheeps(arrayOfSheep) {
+  // TODO May the force be with you
+  let result = 0;
+  arrayOfSheep.forEach((el) => {
+    el ? result++ : (result += 0);
+  });
+  return result;
+}
+
+/* Ones and zeros */
+const binaryArrayToNumber = (arr) => {
+  // your code
+  return parseInt(arr.join(''), 2);
+};
+
+/* A Needle in the Haystack */
+function findNeedle(haystack) {
+  // your code here
+  let position = 0;
+  for (let i = 0; i < haystack.length; i++) {
+    if (haystack[i] === 'needle') {
+      position = i;
+      break;
+    }
+  }
+  return 'found the needle at position ' + position;
+}
+
+/* Remove the minimum */
+function removeSmallest(numbers) {
+  if (!numbers) return [];
+  let numbersCopy = [...numbers];
+  var min = Math.min.apply(null, numbersCopy);
+  numbersCopy.splice(numbers.indexOf(min), 1);
+  return numbersCopy;
+}
+
+/* Convert number to reversed array of degits */
+function digitize(n) {
+  //code here
+  let myFunc = (num) => Number(num);
+
+  var intArr = Array.from(String(n), myFunc);
+  return intArr.reverse();
+}
+
+/* Make a function that does arithmitic */
+function arithmetic(a, b, operator) {
+  //your code here!
+  switch (operator) {
+    case 'add':
+      return a + b;
+      break;
+    case 'subtract':
+      return a - b;
+      break;
+    case 'multiply':
+      return a * b;
+    case 'divide':
+      return a / b;
+      break;
+    default:
+      return 'wrong operator';
+  }
+}
+
+/* Regular ball super ball */
+var Ball = function (ballType = 'regular') {
+  // your code goes here
+  this.ballType = ballType;
+};
+module.exports = Ball;
+
+/* Make them bark */
+// TODO: solve the barking problem!
+// remove the // the line below and copy code to codewars kata
+//Dog.prototype.bark = function() { return 'Woof!' }
+
+/* Add property to every object in array
+  remove comment from the code below and copy it to your code wars kata
+*/
+//write your code here
+/*questions.forEach(function(q) {
+  q.usersAnswer = null
+})*/
+
+/*  FIXME: Get Full Name*/
+class Dinglemouse {
+  constructor(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  getFullName() {
+    return `${this.firstName} ${this.lastName}`.trim();
+  }
+}
+
+/* Grasshoper summation */
+var summation = function (num) {
+  // Code here
+  let sum = 0;
+  for (let i = 1; i <= num; i++) {
+    sum += i;
+  }
+  return sum;
+};
+
+/* Jenny's secret message */
+function greet(name) {
+  if (name === 'Johnny') return 'Hello, my love!';
+  return 'Hello, ' + name + '!';
+}
+
+/* Function 1 Hello world */
+// remove // from code below and copy it to your codwares kata
+//const greet = () => 'hello world!';
+
+/* Count the Monkey's */
+function monkeyCount(n) {
+  // your code here
+  let arr = [];
+  for (let i = 1; i <= n; i++) {
+    arr.push(i);
+  }
+  return arr;
+}
+
+/* Are you playing Banjo */
+function areYouPlayingBanjo(name) {
+  // Implement me
+
+  if (name.charAt(0) === 'r' || name.charAt(0) === 'R') {
+    return name + ' plays banjo';
+  }
+  return name + ' does not play banjo';
+}
+
+/* Find the capitals */
+var capitals = function (word) {
+  // Write your code here
+  return word
+    .split('')
+    .map(function (l, i) {
+      if (l.toUpperCase() === l) return i;
+    })
+    .filter(function (i) {
+      return i != null;
+    });
+};
+
+/* Plural */
+function plural(n) {
+  if (n == 1) return false;
+  return true;
+}
+
+/* Drink about */
+function peopleWithAgeDrink(old) {
+  if (old < 14) {
+    return 'drink toddy';
+  } else if (old >= 14 && old < 18) {
+    return 'drink coke';
+  } else if (old >= 18 && old < 21) {
+    return 'drink beer';
+  } else if (old >= 21) {
+    return 'drink whisky';
+  }
+}
+
+/* Leonardo Decaprio and oscars */
+function leo(oscar) {
+  if (oscar === 88) return 'Leo finally won the oscar! Leo is happy';
+  if (oscar === 86) return 'Not even for Wolf of wallstreet?!';
+  if ((oscar !== 86) & (oscar !== 88) && oscar < 88)
+    return 'When will you give Leo an Oscar?';
+  if (oscar > 88) return 'Leo got one already!';
+}
+
+/*Switch/Case - Bug Fixing #6 */
+function evalObject(value) {
+  var result = 0;
+  switch (value.operation) {
+    case '+':
+      result = value.a + value.b;
+      break;
+    case '-':
+      result = value.a - value.b;
+      break;
+    case '/':
+      result = value.a / value.b;
+      break;
+    case '*':
+      result = value.a * value.b;
+      break;
+    case '%':
+      result = value.a % value.b;
+      break;
+    case '^':
+      result = Math.pow(value.a, value.b);
+      break;
+  }
+  return result;
+}
+
+/* Sentence smash */
+function smash(words) {
+  return words.join(' ');
+}
+
+/* If you can't sleep, just count sheep!! */
+var countSheep = function (num) {
+  return [...Array(num).keys()].reduce(
+    (res, i) => res + (i + 1) + ' sheep...',
+    ''
+  );
+};
+
+/* Double char */
+function doubleChar(str) {
+  var newStr = '';
+  for (var i = 0; i < str.length; i++) {
+    newStr += str.charAt(i) + str.charAt(i);
+  }
+  return newStr;
+}
+
+/* Unfinished Loop - Bug Fixing #1 */
+function createArray(number) {
+  var newArray = [];
+
+  for (var counter = 1; counter <= number; counter++) {
+    newArray.push(counter);
+  }
+
+  return newArray;
+}
+
+/* Sum of numbers from 0 to N */
+var SequenceSum = (function () {
+  function SequenceSum() {}
+
+  SequenceSum.showSequence = function (count) {
+    let arr = [];
+    for (let i = 0; i <= count; i++) {
+      arr.push(i);
+    }
+    let b = arr.reduce((total, next) => total + next, 0);
+    let a = arr.join('+');
+    if (count < 0) return `${count}<0`;
+    if (count == 0) return `${count}=0`;
+    return `${a} = ${b}`;
+  };
+
+  return SequenceSum;
+})();
+
+/* Multiples of 3 or 5 */
+function solution(number) {
+  var sum = 0;
+
+  for (var i = 1; i < number; i++) {
+    if (i % 3 == 0 || i % 5 == 0) {
+      sum += i;
+    }
+  }
+  return sum;
+}
+
+/*  Sum of Digits / Digital Root */
+function digital_root(n) {
+  return ((n - 1) % 9) + 1;
+}
+
+/* Who likes it */
+function likes(names) {
+  names = names || [];
+  switch (names.length) {
+    case 0:
+      return 'no one likes this';
+      break;
+    case 1:
+      return names[0] + ' likes this';
+      break;
+    case 2:
+      return names[0] + ' and ' + names[1] + ' like this';
+      break;
+    case 3:
+      return names[0] + ', ' + names[1] + ' and ' + names[2] + ' like this';
+      break;
+    default:
+      return (
+        names[0] +
+        ', ' +
+        names[1] +
+        ' and ' +
+        (names.length - 2) +
+        ' others like this'
+      );
+  }
+}
+
+/* Find the party outlier */
+function findOutlier(integers) {
+  var even = integers.filter((a) => a % 2 === 0);
+  var odd = integers.filter((a) => a % 2 !== 0);
+  return even.length === 1 ? even[0] : odd[0];
+}
+
+/* Stop gninnipS My sdroW! */
+function spinWords(string) {
+  return string.replace(/\w{5,}/g, function (w) {
+    return w.split('').reverse().join('');
+  });
+}
