@@ -1,3 +1,7 @@
+/**
+ * Selected problems
+ */
+
 /* vowels count */
 function getCount(str) {
   var vowelsCount = 0;
@@ -802,4 +806,266 @@ function spinWords(string) {
   return string.replace(/\w{5,}/g, function (w) {
     return w.split('').reverse().join('');
   });
+}
+
+/**
+ * More problems to achieve 300 points
+ */
+
+/**
+ * 1
+ * title: A Chain adding function
+ * link : https://www.codewars.com/kata/539a0e4d85e3425cb0000a88/train/javascript
+ */
+// solution
+var add = function (n) {
+  const f = (x) => add(n + x);
+  f.valueOf = () => n;
+  return f;
+};
+
+/**
+ * 2
+ * title : Best travel
+ * link: https://www.codewars.com/kata/55e7280b40e1c4a06d0000aa/train/javascript
+ */
+//solution
+const chooseBestSum = (t, k, ls) =>
+  ls
+    .reduce(
+      (r, e) =>
+        r.concat(r.filter((c) => c.length < k).map((c) => c.concat([e]))),
+      [[]]
+    )
+    .filter((c) => c.length === k)
+    .map((c) => c.reduce((a, b) => a + b))
+    .filter((s) => s <= t)
+    .sort((a, b) => b - a)[0] || null;
+
+/**
+ * 3
+ * title: Can you get the loop ?
+ * link: https://www.codewars.com/kata/52a89c2ea8ddc5547a000863/train/javascript
+ */
+// solution
+function loop_size(node) {
+  var turtle = node;
+  var rabbit = node;
+
+  // Find a point in the loop.  Any point will do!
+  // Since the rabbit moves faster than the turtle
+  // and the kata guarantees a loop, the rabbit will
+  // eventually catch up with the turtle.
+  do {
+    turtle = turtle.getNext();
+    rabbit = rabbit.getNext().getNext();
+  } while (turtle != rabbit);
+
+  // The turtle and rabbit are now on the same node,
+  // but we know that node is in a loop.  So now we
+  // keep the turtle motionless and move the rabbit
+  // until it finds the turtle again, counting the
+  // nodes the rabbit visits in the mean time.
+  var count = 0;
+  do {
+    ++count;
+    rabbit = rabbit.getNext();
+  } while (turtle != rabbit);
+
+  // voila
+  return count;
+}
+
+/**
+ * 4
+ * title: Common Denominators
+ * link: https://www.codewars.com/kata/54d7660d2daf68c619000d95/train/javascript
+ */
+//solution
+const gcd = (a, b) => (b ? gcd(b, a % b) : a);
+const lcm = (a, b) => (a * b) / gcd(a, b);
+
+function convertFrac(arr) {
+  const cd = arr.reduce((a, [_, d]) => lcm(d, a), 1);
+  return arr.map(([n, d]) => `(${(n * cd) / d},${cd})`).join('');
+}
+
+/**
+ * 5
+ * title: Did I Finish my Sudoku?
+ * link: https://www.codewars.com/kata/53db96041f1a7d32dc0004d2/train/javascript
+ */
+//solution
+function doneOrNot(board) {
+  let count0 = 0;
+  let count1 = 0;
+  let count2 = 0;
+  let count3 = 0;
+  let count4 = 0;
+  let count5 = 0;
+  let count6 = 0;
+  let count7 = 0;
+  let count8 = 0;
+  let count9 = 0;
+  for (let i = 0; i < board.length; i++) {
+    count0 += board[i][0];
+    count1 += board[i][1];
+    count2 += board[i][2];
+    count3 += board[i][3];
+    count4 += board[i][4];
+    count5 += board[i][5];
+    count6 += board[i][6];
+    count7 += board[i][7];
+    count8 += board[i][8];
+  }
+  return count0 === 45 &&
+    count1 === 45 &&
+    count2 === 45 &&
+    count3 === 45 &&
+    count4 === 45 &&
+    count5 === 45 &&
+    count6 === 45 &&
+    count7 === 45 &&
+    count8 === 45 &&
+    board[7][8] != board[8][7]
+    ? 'Finished!'
+    : 'Try again!';
+}
+
+/**
+ * 7
+ * title: Directions Reduction
+ * link: https://www.codewars.com/kata/550f22f4d758534c1100025a/train/javascript
+ */
+// solution
+function dirReduc(arr) {
+  let str = arr.join(''),
+    pattern = /NORTHSOUTH|EASTWEST|SOUTHNORTH|WESTEAST/;
+  while (pattern.test(str)) str = str.replace(pattern, '');
+  return str.match(/(NORTH|SOUTH|EAST|WEST)/g) || [];
+}
+
+/**
+ * 8
+ * title : Extract the domain name from a URL
+ * link: https://www.codewars.com/kata/514a024011ea4fb54200004b/train/javascript
+ */
+//solution
+function domainName(url) {
+  url = url.replace('https://', '');
+  url = url.replace('http://', '');
+  url = url.replace('www.', '');
+  return url.split('.')[0];
+}
+
+/**
+ * 9
+ * title: Factorial decomposition
+ * link: https://www.codewars.com/kata/5a045fee46d843effa000070/train/javascript
+ */
+// solution
+function decomp(n) {
+  function isPrime(num) {
+    if (num % 2 == 0 || num % 3 == 0) {
+      return false;
+    }
+    var d = 5;
+    while (d <= Math.sqrt(num)) {
+      if (num % d == 0 || num % (d + 2) == 0) {
+        return false;
+      } else {
+        d += 6;
+      }
+    }
+    return true;
+  }
+  let primes = [2, 3];
+  let k = 5;
+  while (k <= n) {
+    if (isPrime(k)) {
+      primes.push(k);
+    }
+    k += 2;
+  }
+  let factor_string = '';
+  for (let i = 0; i < primes.length; i++) {
+    let N = n;
+    let index = n;
+    while (N > 0) {
+      index -= N % primes[i];
+      N = (N - (N % primes[i])) / primes[i];
+    }
+    index /= primes[i] - 1;
+    index > 1
+      ? (factor_string += primes[i] + '^' + index + ' * ')
+      : (factor_string += primes[i] + ' * ');
+  }
+  return factor_string.slice(0, factor_string.length - 3);
+}
+
+/**
+ * 10
+ * title:Fun with trees: array to tree
+ * link: https://www.codewars.com/kata/57e5a6a67fbcc9ba900021cd/train/javascript
+ */
+// solution
+function arrayToTree(values, i = 0) {
+  if (i >= values.length) return;
+  return new TreeNode(
+    values[i],
+    arrayToTree(values, 2 * i + 1),
+    arrayToTree(values, 2 * i + 2)
+  );
+}
+
+/**
+ * 11
+ * title: Greed is Good
+ * link: https://www.codewars.com/kata/5270d0d18625160ada0000e4/train/javascript
+ */
+// solution
+function score(dice) {
+  let result = 0;
+  let arr2 = [];
+
+  const arr1 = dice.sort((a, b) => a - b);
+  for (let i = 1; i < 7; i++) {
+    arr2.push(arr1.slice(arr1.indexOf(i), arr1.lastIndexOf(i) + 1));
+  }
+  let arr = arr2.map((v) => v.length);
+  for (let j = 0; j < 5; j++) {
+    if (arr[0] >= 3) {
+      result += 1000;
+      arr[0] -= 3;
+    }
+    if (arr[0] > 0) {
+      result += 100;
+      arr[0] -= 1;
+    }
+    if (arr[1] >= 3) {
+      result += 200;
+      arr[1] -= 3;
+    }
+    if (arr[2] >= 3) {
+      result += 300;
+      arr[2] -= 3;
+    }
+    if (arr[3] >= 3) {
+      result += 400;
+      arr[3] -= 3;
+    }
+    if (arr[4] >= 3) {
+      result += 500;
+      arr[4] -= 3;
+    }
+    if (arr[4] > 0) {
+      result += 50;
+      arr[4] -= 1;
+    }
+    if (arr[5] >= 3) {
+      result += 600;
+      arr[5] -= 3;
+    }
+  }
+  return result;
 }
