@@ -480,7 +480,7 @@ function abbrevName(name) {
   let arr = name.split(' ');
   let result = '';
   for (let i = 0; i < arr.length; i++) {
-    result += arr[i].charAt(0) + '.';
+    result += arr[i].charAt(0).toUpperCase() + '.';
   }
   return result.slice(0, -1);
 }
